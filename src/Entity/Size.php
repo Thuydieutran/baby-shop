@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\SizeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=SizeRepository::class)
  */
-class Category
+class Size
 {
     /**
      * @ORM\Id
@@ -22,15 +20,12 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="ne me laisse pas tout vide")
-     * @Assert\Length(max="100", maxMessage="La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères")
-    */
-
+     * @ORM\Column(type="string", length=255)
+     */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="actors")
      */
     private $products;
 
@@ -39,7 +34,6 @@ class Category
         $this->products = new ArrayCollection();
     }
 
-    
     public function getId(): ?int
     {
         return $this->id;
@@ -69,7 +63,6 @@ class Category
     {
         if (!$this->products->contains($product)) {
             $this->products[] = $product;
-            $product->setCategory($this);
         }
 
         return $this;
@@ -77,12 +70,7 @@ class Category
 
     public function removeProduct(Product $product): self
     {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getCategory() === $this) {
-                $product->setCategory(null);
-            }
-        }
+        $this->products->removeElement($product);
 
         return $this;
     }

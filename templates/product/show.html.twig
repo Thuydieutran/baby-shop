@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail Produit{% endblock %}
+
+{% block body %}
+<main class="col-9 mx-auto mb-5">
+	<div class="d-flex flex-row justify-content-center">
+		<img class="me-3" src="{{ asset('build/images/heart.svg') }}" width="30px">
+		<h2 class="my-5">{{ product.title }}</h2>
+		<img class="ms-3" src="{{ asset('build/images/heart.svg') }}" width="30px">
+	</div>
+	<div class="row">
+            <div class="col-6">
+				<img class="w-100 d-block" src="{{ product.photo }}" style="width:100%; height:60vh; object-fit:contain;"/>
+			</div>           
+			<div class="col-6 p-5">
+				<div class="row">
+					<h3 class="text-secondary me-5" >{{ product.category.name }}</h3>
+					<h4 class="my-5 text-pink"> {{ product.prix }} € </h4>
+					<h4>Description</h4>
+					<p>{{ product.description }}</p>
+					<h4>Taille</h4>
+					<ul class="d-flex flex-row justify-content-center mb-5">
+					{% for size in product.sizes %}
+					<li class="text-secondary list-group-item m-2">{{ size.name }}</li>
+					{% endfor %}
+					</ul>
+				
+					<small class=" text-muted fs-5">Créé le {{ product.createdAt|date('d/m/Y') }}</small>
+				</div>
+				<div class="row mt-5">
+					<button class="btn btn-pink text-light fs-5 col-4">Ajouter au panier</button>
+    			</div>			
+			</div>
+	</div>
+</main>
+{% endblock %}

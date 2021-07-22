@@ -1,0 +1,18 @@
+@import 'variables.scss';
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    border: 2px solid $secondary;
+    box-shadow: none;
+}
+
+.navbar-pink {
+    background-color: $primary;
+    height:80px;
+}
+
+.navbar .nav-item:hover .nav-link, .panier .nav-link:hover{ 
+    color: $secondary !important;
+}

@@ -1,9 +1,31 @@
-$primary: rgb(223, 158, 18);
-$secondary: white;
-$intermediary: rgb(3, 92, 10);
+$primary:#ffc6c1;
+$secondary: grey;
 $light: #FFFFFF;
-$dark: rgb(20, 19, 19)
+$intermediary: rgb(216, 211, 211);
+$pink:#ff6582;
+$warning:rgb(201, 204, 42);
+$dark:#000000;
 
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "pink":    $pink,
+    "light":      $light,
+    "dark":       $dark,
+    "intermediary": $intermediary,
+);
 
+$display-font-sizes: (
+    1: 5rem,
+    2: 4.5rem,
+    3: 4rem,
+    4: 3.5rem,
+    5: 3rem,
+    6: 2.5rem
+);
 
-
+$text-font: 'Rancho', cursive;
+$font-title: 'Space Mono', monospace;
+$font-subtitle:'Kaushan Script', cursive;
+$title-weight: 800;
+$card-height: 100%;

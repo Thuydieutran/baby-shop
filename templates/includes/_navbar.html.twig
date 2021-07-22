@@ -1,25 +1,76 @@
-<nav class="navbar navbar-expand-lg bg-warning px-5">
-   
-  <a class="navbar-brand text-secondary" href="/"> <img class="border rounded-circle" src="{{ asset('build/images/babyicon.jpg') }}" width="40px" height="40px" alt=""/>Wild-series</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-    <div class="navbar-nav px-3">
-      <a class="nav-item nav-link active fs-5 text-success mx-5" href="/">Home</a>
-      <a class="nav-item nav-link fs-5 text-success" href="{{ path('category_index') }}"> Categories</a>
-      <a class="nav-item nav-link fs-5 text-success" href="{{ path('program_index') }}"> Programs</a>
+<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #ffc6c1;">
+  <div class="container-fluid">
+    <img class="border bg-light rounded-circle me-3" src="{{ asset('build/images/babyiconfree.png') }}" width="60px"
+              height="60px" alt="logo-baby-shop">
+          <a href="" class="text-light text-uppercase d-none d-lg-block me-5 fw-bold">Jolie piquese</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto my-2 my-lg-0">
+        <li class="nav-item text-center mx-3 fw-bold fst-italic">
+            <a class="nav-link active text-light" href="{{ path('index') }}">Accueil</a>
+          </li>
+        <li class="nav-item text-center mx-3 fw-bold fst-italic">
+           <a class="nav-link active text-light" href="{{ path('product_index') }}">Nos produits</a>
+        </li>
+        <li class="nav-item dropdown text-center mx-3 fw-bold fst-italic">
+         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fille
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Robe</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Pyjama</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Pull, gilet et cardigan</a></li>
+          </ul>
+        </li>
+          <li class="nav-item dropdown text-center mx-3 fw-bold fst-italic">
+         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Garçon
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">T-shirt et polo</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Pyjama</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Pantalon, jean et short</a></li>
+          </ul>
+        </li>
+         <li class="nav-item dropdown text-center mx-3 fw-bold fst-italic">
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bébé
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Body</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Pyjama et combinaison</a></li>
+            <li><a class="dropdown-item text-center text-secondary fs-5" href="#">Bonnet & chaussettes</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="panier d-flex justify-content-lg-end justify-content-center">
+      
+        <a class="nav-link active text-light" href=""><img src="{{ asset('build/images/panier.png') }}"
+                          class="text-light" alt="panier" width="30">Mon panier</a>
+                  
+        
+        
+        <a class="nav-link active text-light" href=""><img src="{{ asset('build/images/user.png') }}"
+                          class="text-light " alt="user" width="30">Mon compte</a>
+        
+       
+                  
+                  {#
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+  
+                  Bienvenue {{ app.user.firstname }} !
+                  <a class="nav-link btn btn-secondary" href="{{ path('app_logout') }}">Deconnexion</a>
+  
+                  {% else %}
+  
+                  <a class="nav-link btn btn-secondary" href="{{ path('app_login') }}">Se connecter</a>
+  
+                  {% endif %} #}
+                  
+              </div>
+
     </div>
   </div>
-  {% if app.user %}
-
-    {{ app.user.email }}
-
-    <a class="nav-item nav-link fs-5 text-success" href="{{ path('app_logout') }}"> Se déconnecter</a>
-
-{% else %}
-
-    <a class="nav-item nav-link fs-5 text-success" href="{{ path('app_login') }}"> Se connecter</a>
-
-{% endif %}
 </nav>

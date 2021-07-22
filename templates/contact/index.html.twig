@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% form_theme contact 'bootstrap_4_layout.html.twig' %}
+{% block title %}Contact
+{% endblock %}
+{% block body %}
+	<div class="container my-5">
+		<h2 class="text-center mt-5 mb-3 fs-1">Contactez-nous</h2>
+		<div class="row d-flex justify-content-center">
+			<div class="col-8 border rounded border-secondary shadow mb-5 m-3 p-4 bg-primary">
+				{{ form_start(contact) }}
+              
+				{{ form_row(contact.last_name) }}
+                {{ form_row(contact.first_name) }}
+                {{ form_row(contact.email) }}
+                {{ form_row(contact.phone) }}
+                 {{ form_row(contact.message) }}
+				<div class="d-flex justify-content-end">
+					<input type="submit" value="Envoyer" class="btn btn-secondary text-light mt-3 px-3 fs-5 d-flex justify-content-md-end justify-content-center">
+				</div>
+				{{ form_end(contact) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

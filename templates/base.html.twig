@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+		<link rel="icon" type="image/png" href="{{ asset('build/images/babyiconfree.png') }}"/>
 		<title>
-			{% block title %}Welcome{% endblock %}
+			{% block title %}Jolie piquese{% endblock %}
 		</title>
 
 		{% block stylesheets %}
@@ -17,10 +17,14 @@
 		{% endblock %}
 	</head>
 	<body>
-		<header>
+		{% block header %}
+			{% include "includes/_searchbar.html.twig" %}
             {% include "includes/_navbar.html.twig" %}
-        </header>
-		{% block body %}{% endblock %}
 		
+        {% endblock %}
+		{% block body %}{% endblock %}
+		{% block footer %}
+			{% include "includes/_footer.html.twig" %}
+		{% endblock %}
 	</body>
 </html>

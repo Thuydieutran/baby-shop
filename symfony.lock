@@ -127,11 +127,23 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "fakerphp/faker": {
+        "version": "v1.15.0"
+    },
+    "fortawesome/font-awesome": {
+        "version": "5.15.3"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
     "friendsoftwig/twigcs": {
         "version": "v5.0.0"
+    },
+    "giggsey/libphonenumber-for-php": {
+        "version": "8.12.28"
+    },
+    "giggsey/locale": {
+        "version": "1.9"
     },
     "gitonomy/gitlib": {
         "version": "v1.2.3"
@@ -652,6 +664,9 @@
         "version": "v5.2.7"
     },
     "twig/extra-bundle": {
+        "version": "v3.3.0"
+    },
+    "twig/intl-extra": {
         "version": "v3.3.0"
     },
     "twig/twig": {

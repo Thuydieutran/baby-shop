@@ -1,8 +1,75 @@
 {% extends 'layout.html.twig' %}
 
-
 {% block body %}
+<section class="boutique col-lg-9 mx-auto mb-5">
+    <h2 class="text-center text-secondary">NOTRE BOUTIQUE</h2>
+    <p class="text-center text-pink mb-5 p-2" style="color:#ff6582;">Un Amour d’enfant, friperie en ligne de vêtements pour bébés et enfants de 0 à 6 ans à petits prix. 
+</br><span class="d-none d-lg-block">N'hésitez plus, profitez nos offres exclusives ou abonnez-vous pour recevoir les alertes des nouvelles collections.</span></p>
+    {# CAROUSEL #}
+    <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel" height="" style="">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner mb-5">
+    <div class="carousel-item active">
+      <img src="https://bit.ly/3BnWR49" class="d-block w-100 mx-auto" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="fw-bold">Jolie piquese</h3>
+        <h4 class="fs-4 text-secondary">Vend les vêtements en ligne pour bébés et enfants de 0 à 6 ans à petits prix.</h4>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://bit.ly/2UDzHWF" class="d-block w-100  mx-lg-auto" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="fw-bold">Promotion exclusive</h3>
+        <h4 class="fs-4 text-secondary">10 % sur votre 1ère commande avec le CODE joliepiquese10.</h4>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://bit.ly/3ixMEt1" class="d-block w-100 mx-auto" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="fw-bold">Nouvelle collection</h5>
+        <h4 class="fs-4 text-secondary">N'hésitez pas à vous abonner pour recevoir les notifications dès qu'une nouvelle collection sortira.</h4>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</section>
 
-    <h1 class="text-center">Bienvenue</h1>
-
+ {# TOP VENTE #}
+<section class="top-vente col-lg-9 col-11 mx-auto my-5">
+  <h2 class="text-center text-secondary">NOUVELLE COLLECTION</h2>
+  <p class="text-center text-pink mb-5 p-2" style="color:#ff6582;">N'hésitez pas à vous abonner pour recevoir les notifications dès qu'une nouvelle collection sortira.</p>
+ <div class="row">
+			{% for product in products %}
+				<div class="col-sm-6 col-md-4 mb-5">
+					<a href="{{ path('product_show', {'id': product.id}) }}">
+						<div class="card">
+							<img src="{{ product.photo }}" class="card-img-top" alt="" height="300px">
+							<div class="card-body">
+								<h4 class="card-title text-secondary">{{ product.title }}</h4>
+								<div class="d-flex flex-row justify-content-between">
+									<p class="badge bg-pink text-light">{{ product.category.name }}</p>
+									<p class="card-text text-pink">{{ product.prix }}€</p>
+								</div>
+							</div>
+							<div class="card-footer">
+      							<small class="text-muted">Créé le {{ product.createdAt|date('d/m/Y') }}</small>
+    						</div>
+						</div>
+					</a>
+				</div>
+        {% endfor %}
+		</div>
+ </section>
 {% endblock %}

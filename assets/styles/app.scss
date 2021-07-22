@@ -1,11 +1,29 @@
 @import 'variables.scss';
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Space+Mono:ital,wght@1,700&display=swap');
+@import 'navbar.scss';
+@import 'banner.scss';
+@import 'product.scss';
 
 body {
-    background-color: $secondary;
+    background-color: $light;
+    font-family: $text-font;
+    font-size: 18pt;
+    padding-top:20px;
+    font-weight: lighter;
 }
 
-.navbar {
-    background-color: $primary;
-    color:$dark;
+h1 {
+    font-family: $font-title;
+    font-weight: 800;
 }
+h2, h3{
+    font-family: $font-subtitle;
+}
+
+.promotion-text {
+    background-color: $intermediary;
+}
+
+
