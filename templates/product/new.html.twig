@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Product{% endblock %}
-
+{% extends "base.html.twig" %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}Ajouter un nouveau produit
+{% endblock %}
 {% block body %}
-    <h1>Create new Product</h1>
-
-    {{ include('product/_form.html.twig') }}
-
-    <a href="{{ path('product_index') }}">back to list</a>
+	<div class="container my-5">
+		<h2 class="text-center mb-3 fs-1 text-secondary">Créer un nouveau produit</h2>
+		<div class="row d-flex justify-content-center mb-5">
+			<div class="col-lg-8 col-11 border rounded border-secondary shadow mb-5 m-3 p-4 bg-primary text-secondary fs-4">
+                {{ include('product/_form.html.twig') }}
+                <a href="{{ path('product_index') }}">Voir la liste des produits</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

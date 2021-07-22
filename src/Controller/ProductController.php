@@ -8,12 +8,12 @@ use App\Form\ProductType;
 use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
 use App\Repository\SizeRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/product")
@@ -38,9 +38,20 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/list", name="product_list", methods={"GET"})
+     */
+    public function list(ProductRepository $productRepo): Response
+    {
+        return $this->render('product/list.html.twig', [
+            'products' => $productRepo->findAll(),
+           ]);
+    }
+
+
+    /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -50,6 +61,7 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+            $this->addFlash('success', 'Le produit a bien été créé');
 
             return $this->redirectToRoute('product_index');
         }

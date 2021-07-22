@@ -3,7 +3,9 @@ $secondary: grey;
 $light: #FFFFFF;
 $intermediary: rgb(216, 211, 211);
 $pink:#ff6582;
-$warning:rgb(201, 204, 42);
+$warning:rgb(230, 172, 16);
+$success:green;
+$danger: rgb(209, 10, 10);
 $dark:#000000;
 
 $theme-colors: (
@@ -12,6 +14,10 @@ $theme-colors: (
     "pink":    $pink,
     "light":      $light,
     "dark":       $dark,
+    "warning":       $warning,
+    "success":       $success,
+    "danger":       $danger,
+
     "intermediary": $intermediary,
 );
 

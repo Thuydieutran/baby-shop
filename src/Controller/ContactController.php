@@ -33,7 +33,7 @@ class ContactController extends AbstractController
             ->subject(self::MAILER_SUBJECT)
             ->html($this->renderView('contact/newMessageEmail.html.twig', ['contact' => $contact]));
             $mailer->send($email);
-            $this->addFlash('success', 'Votre message est en cours de traitement,
+            $this->addFlash('message', 'Votre message est en cours de traitement,
                 nous vous contacterons ultérieurement !');
             return $this->redirectToRoute('contact');
         }

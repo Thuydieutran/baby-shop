@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer  fixed-bottom">
     <div class="row bg-secondary p-2">
         <div class="col-lg-2 mt-2 d-flex justify-content-center align-items-center mb-5 mb-lg-0">
             <img class="border bg-light rounded-circle me-3" src="{{ asset('build/images/babyiconfree.png') }}" width="60px"
@@ -9,13 +9,10 @@
         <div class="col-lg-6 col-sm-12 d-flex flex-column justify-content-center mx-auto mb-4 mb-lg-0">
            
             <a href="" class="text-center text-white fw-bold text-uppercase">Abonnez-vous</a> 
-           
-                <form method ="post" action ="">
                     <div class="d-flex flex-row justify-content-center">
-                        <button class="btn border rounded bg-light text-secondary fs-5 me-2" style="width:120px;">Je m'abonne</button>
-                        <input class="form-control" type="email" id="email" name="email" placeholder="Saisir votre e-mail" value="" style="width:200px;" required />
-                    </div>        
-                </form>
+                        <a class="btn border rounded bg-light text-secondary fs-5 me-2" href="{{ path('app_register') }}" style="width:120px;">Je m'abonne</a>
+                       </div>        
+                
             
         </div>
         <div class="col-lg-3 mt-4 d-flex flex-column justify-content-center mx-auto">
@@ -23,7 +20,7 @@
             <p class="text-light text-center text-lg-end">SUIVEZ-NOUS !</p>
             <div class="d-flex justify-content-lg-end justify-content-center flex-row fw-bold text-white">
                     <!-- facebook -->
-                    <a class="btn btn-normal text-light" href="https://www.facebook.com/Le-club-de-limmo-orl%C3%A9ans-1118135258245650/" role="button" target="_blank">
+                    <a class="btn btn-normal text-light" href="https://fr-fr.facebook.com/JoliePiqueuse" role="button" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                             class="bi bi-facebook" viewBox="0 0 16 16">
                             <path

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% form_theme contact 'bootstrap_4_layout.html.twig' %}
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+
+<div class="col-md-10 mx-auto my-5">
+
+{% for message in app.flashes('message') %}
+    		
+        	<div class="alert alert-success">
+            	{{ message }}
+        	</div>
+			
+    	{% endfor %}
+	<h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Votre panier</h2>
+	<div class="row d-flex justify-content-center" style="margin:5px">
+		<div class="col-md-10 border rounded border-secondary shadow mb-5 mx-3 p-md-4 p-0 bg-primary">
+            <table class="table ">
+                <thead scope="col">
+                    <tr>
+                        <th class="d-none d-md-block text-secondary fs-3">Produit</th>
+                        <th class="text-center text-secondary">Photo</th>
+                        <th class="text-center text-secondary">Prix</th>
+                        <th class="text-center text-secondary">Quantité</th>
+                        <th class="text-center text-secondary">Total</th>
+                        <th class="text-center text-secondary">Actions</th>
+                    </tr>
+                </thead>
+                <tbody scope="row">
+                    {% for item in items %}
+                        <tr class="text-secondary fs-4">
+                            <td class="d-none d-md-block">{{ item.product.title }}</td>
+                            <td class="text-center"><img src="{{ item.product.photo }}" width="50px"></td>
+                            <td class="text-center">{{ item.product.prix }} €</td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td class="text-center">{{ item.quantity * item.product.prix }}€</td>
+                            <td class="text-center"> 
+                                <a href="{{ path("cart_add", {id:item.product.id}) }}" class="btn btn-secondary text-light">
+                                    <i class="bi bi-cart-plus"></i>
+                                </a>
+                                <a href="{{ path("cart_remove", {id:item.product.id}) }}" class="btn btn-intermediary text-dark">
+                                    <i class="bi bi-cart-dash"></i>
+                                </a>
+                                <a href="{{ path("cart_delete", {id:item.product.id}) }}" class="btn btn-pink text-light">
+                                    <i class="bi bi-cart-x"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center text-secondary">Votre panier est vide</td>
+                        </tr>
+                    {% endfor  %}
+                </tbody>
+                <tfoot>
+                    <tr class="text-secondary">
+                        <td colspan="3">Total</td>
+                        <td class="text-end">{{ total }}€</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="col-md-10 mb-5 d-flex justify-content-betweenrow ">
+            <div class="col-4">
+                <a class=" btn btn-secondary text-light fs-5" href="{{ path('product_index') }}">Continuer mon achat</a> 
+            </div>
+            <div class="col-lg-8 row">
+                    {{ form_start(contact) }}
+                    <div class="col-4">
+                        {{ form_row(contact.email) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(contact.message) }}
+                    </div>
+                    <div class="col-4">
+                        
+                        <input type="submit" value="Valider mon achat" class="btn btn-secondary text-light mt-3 px-3 fs-5 d-flex justify-content-md-end justify-content-center">
+                    </div>
+                    {{ form_end(contact) }}
+            </div>
+        </div>   
+    </div>
+</div>
+{% endblock %}

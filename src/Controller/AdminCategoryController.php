@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Form\Category1Type;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,17 +31,20 @@ class AdminCategoryController extends AbstractController
     public function new(Request $request): Response
     {
         $category = new Category();
-        $form = $this->createForm(Category1Type::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
+            $this->addFlash('success', 'La catégorie a bien été crée');
 
-            return $this->redirectToRoute('admin_category_index');
+            return $this->redirectToRoute('admin_category_index', [
+                'category' => $category,
+                'form' => $form->createView(),
+            ]);
         }
-
         return $this->render('admin_category/new.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
@@ -53,22 +56,23 @@ class AdminCategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
-        return $this->render('admin_category/show.html.twig', [
-            'category' => $category,
-        ]);
-    }
+       return $this->render('admin_category/show.html.twig', [
+           'category' => $category,
+       ]);
+    } 
+    
 
     /**
      * @Route("/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Category $category): Response
     {
-        $form = $this->createForm(Category1Type::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'La catégorie a bien été modifiée');
             return $this->redirectToRoute('admin_category_index');
         }
 
@@ -87,6 +91,7 @@ class AdminCategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();
+            $this->addFlash('success', 'La catégorie a bien été supprimée');
         }
 
         return $this->redirectToRoute('admin_category_index');

@@ -3,7 +3,7 @@
 {% block title %}Détail Produit{% endblock %}
 
 {% block body %}
-<main class="col-9 mx-auto mb-5">
+<main class="col-9 mx-auto mb-5 text-secondary">
 	<div class="d-flex flex-row justify-content-center">
 		<img class="me-3" src="{{ asset('build/images/heart.svg') }}" width="30px">
 		<h2 class="my-5">{{ product.title }}</h2>
@@ -29,7 +29,7 @@
 					<small class=" text-muted fs-5">Créé le {{ product.createdAt|date('d/m/Y') }}</small>
 				</div>
 				<div class="row mt-5">
-					<button class="btn btn-pink text-light fs-5 col-4">Ajouter au panier</button>
+					<a href="{{ path('cart_add', {'id': product.id}) }}" class="fs-5 col-6 offset-3 btn btn-secondary text-light"><i class="bi bi-cart-plus"></i>Ajouter au panier</a>
     			</div>			
 			</div>
 	</div>
