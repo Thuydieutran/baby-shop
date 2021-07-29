@@ -44,7 +44,7 @@
 									<p class="badge bg-pink text-light">{{ product.category.name }}</p>
 									<p class="card-text text-pink">{{ product.prix }}€</p>
 								</div>
-								<a href="{{ path('cart_add', {'id': product.id}) }}" class="fs-5 col-6 offset-3 btn btn-secondary text-light"><i class="bi bi-cart-plus"></i>Ajouter au panier</a>
+								<a href="{{ path('cart_add', {'id': product.id}) }}" class="fs-5 col-6 offset-3  btn btn-secondary text-light"><i class="bi bi-cart-plus"></i>Ajouter au panier</a>
 							</div>
 							<div class="card-footer">
       							<small class="text-muted">Créé le {{ product.createdAt|date('d/m/Y') }}</small>

@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
                 'class' => 'h5',
             ],
             'attr' => [
-                'placeholder' => 'anna@gmail.com',
+                'placeholder' => 'email@gmail.com',
             ]
         ])
         ->add('agreeTerms', CheckboxType::class, [

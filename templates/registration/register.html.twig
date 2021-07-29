@@ -10,7 +10,7 @@
 		{% endfor %}
 
 		<h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Inscription</h2>
-		<div class="row d-flex justify-content-center">
+		<div class="row d-flex justify-content-center text-secondary">
 			<div class="col-lg-8 col-11 border rounded border-secondary shadow mb-5 m-3 p-4 bg-primary">
 				{{ form_start(registrationForm) }}
 				{{ form_row(registrationForm.email) }}
@@ -18,9 +18,9 @@
 				{{ form_row(registrationForm.firstname) }}
 				{{ form_row(registrationForm.lastname) }}
 			
-				<div class="m-1 d-flex justify-content-end">
-					{{ form_row(registrationForm.agreeTerms, {'label': 'Accepter les '}) }}
-					conditions générales d'utilisation
+				<div class="m-1 d-flex justify-content-end text-secondary">
+					{{ form_row(registrationForm.agreeTerms, {'label': 'Accepter les conditions générales d\'utilisation '}) }}
+					
 				</div>
 
 				<div class="m-1 d-flex justify-content-end">

@@ -18,7 +18,8 @@
 					<h3 class="text-secondary me-5" >{{ product.category.name }}</h3>
 					<h4 class="my-5 text-pink"> {{ product.prix }} € </h4>
 					<h4>Description</h4>
-					<p>{{ product.description }}</p>
+					<p class="px-5 fs-5 fst-italic text-pink">{{ product.description }}</p>
+			
 					<h4>Taille</h4>
 					<ul class="d-flex flex-row justify-content-center mb-5">
 					{% for size in product.sizes %}

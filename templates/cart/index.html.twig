@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme contact 'bootstrap_4_layout.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block title %}Votre panier{% endblock %}
 
 {% block body %}
@@ -13,11 +13,11 @@
         	</div>
 			
     	{% endfor %}
-	<h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Votre panier</h2>
+	<h2 class="text-center mt-5 mb-4 fs-1 text-secondary">Votre panier</h2>
 	<div class="row d-flex justify-content-center" style="margin:5px">
 		<div class="col-md-10 border rounded border-secondary shadow mb-5 mx-3 p-md-4 p-0 bg-primary">
-            <table class="table ">
-                <thead scope="col">
+            <table class="table table-borderless">
+                <thead scope="col" class="border-top-0 border-end-0 border-start-0 border-secondary border-2">
                     <tr>
                         <th class="d-none d-md-block text-secondary fs-3">Produit</th>
                         <th class="text-center text-secondary">Photo</th>
@@ -30,7 +30,7 @@
                 <tbody scope="row">
                     {% for item in items %}
                         <tr class="text-secondary fs-4">
-                            <td class="d-none d-md-block">{{ item.product.title }}</td>
+                            <td class="d-none d-lg-block">{{ item.product.title }}</td>
                             <td class="text-center"><img src="{{ item.product.photo }}" width="50px"></td>
                             <td class="text-center">{{ item.product.prix }} €</td>
                             <td class="text-center">{{ item.quantity }}</td>
@@ -49,12 +49,12 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="5" class="text-center text-secondary">Votre panier est vide</td>
+                            <td colspan="6" class="text-center text-secondary">Votre panier est vide</td>
                         </tr>
                     {% endfor  %}
                 </tbody>
                 <tfoot>
-                    <tr class="text-secondary">
+                    <tr class="text-secondary border-bottom-0 border-end-0 border-start-0 border-secondary border-2">
                         <td colspan="3">Total</td>
                         <td class="text-end">{{ total }}€</td>
                         <td></td>
@@ -62,23 +62,16 @@
                 </tfoot>
             </table>
         </div>
-        <div class="col-md-10 mb-5 d-flex justify-content-betweenrow ">
-            <div class="col-4">
+        <div class="col-md-10 mb-5 row ">
+            <div class="col-lg-6 mb-3">
                 <a class=" btn btn-secondary text-light fs-5" href="{{ path('product_index') }}">Continuer mon achat</a> 
             </div>
-            <div class="col-lg-8 row">
-                    {{ form_start(contact) }}
-                    <div class="col-4">
-                        {{ form_row(contact.email) }}
-                    </div>
-                    <div class="col-4">
-                        {{ form_row(contact.message) }}
-                    </div>
-                    <div class="col-4">
-                        
+            <div class="col-lg-6">
+                    {{ form_start(form) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.message) }}
                         <input type="submit" value="Valider mon achat" class="btn btn-secondary text-light mt-3 px-3 fs-5 d-flex justify-content-md-end justify-content-center">
-                    </div>
-                    {{ form_end(contact) }}
+                    {{ form_end(form) }}
             </div>
         </div>   
     </div>
