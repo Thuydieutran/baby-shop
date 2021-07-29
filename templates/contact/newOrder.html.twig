@@ -11,10 +11,14 @@
   </div>
   <div style="margin-left:5px;">
     <h4>
-      <p> De : {{ contact.firstname }} {{ contact.lastname }} </p>
-      <p> Téléphone : {{ contact.phone }} </p>
-      <p> E-mail : {{ contact.email }} </p>
-      <p> Message : {{ contact.message }} </p>
+      <p> De : {{ mail }} </p>
+      <p> Message : {{ message }} </p>
+      <ul>
+      {% for item in items %}
+
+      <li>{{ item.product.title }}  {{ item.quantity }} </li>
+        {% endfor %}                                       
+      </ul>
     </h4>
   </div>
 {% endblock %}

@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}New Category{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}Ajouter une catégorie{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
-
-    {{ include('admin_category/_form.html.twig') }}
-
-    <a href="{{ path('admin_category_index') }}">back to list</a>
+   {% for message in app.flashes('message') %}
+        	<div class="alert alert-success">
+            	{{ message }}
+        	</div>	
+    	{% endfor %}
+    <div class="container" style="margin:150px auto">
+		<h2 class="text-center mb-3 fs-1 text-secondary">Créer un nouveau produit</h2>
+		<div class="row d-flex justify-content-center mb-5">
+			<div class="col-lg-8 col-11 border rounded border-secondary shadow mb-5 m-3 p-4 bg-primary text-secondary fs-4">
+            
+                {{ include('admin_category/_form.html.twig') }}
+                <a href="{{ path('admin_category_index') }}">Voir la liste des catégories</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

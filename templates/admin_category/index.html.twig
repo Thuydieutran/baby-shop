@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Category{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+<div class="container my-5">
+	<h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Liste des categories</h2>
+	<div class="row d-flex justify-content-center" style="margin:5px">
+		<div class="col-md-10 border rounded border-secondary shadow mb-5 mx-3 p-md-4 p-0 bg-primary">
+        
 
-    <table class="table">
+    <table class="table text-secondary">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,8 +23,8 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>
-                    <a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('admin_category_show', {'id': category.id}) }}" class="btn btn-secondary text-light mb-2 mb-md-0">Afficher</a>
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-secondary text-light ">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +34,12 @@
         {% endfor %}
         </tbody>
     </table>
+    
+</div>  
+ 
+    </div>
+    <a href="{{ path('admin_category_new') }}" class="btn btn-secondary text-light col-4 offset-4">Ajouter une nouvelle catégory </a>
 
-    <a href="{{ path('admin_category_new') }}">Create new</a>
+   </div>
+    
 {% endblock %}

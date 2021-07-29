@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container mx-auto">
+<div class="container mx-auto" style="margin-top:150px; margin-bottom:150px;">
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -12,9 +12,9 @@
 
     <h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Connectez-vous</h2>
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-8 col-11 border rounded border-secondary shadow mb-3 p-4 bg-primary">
+            <div class="col-lg-8 col-11 border rounded border-secondary text-secondary shadow mb-3 p-4 bg-primary">
                 <label for="inputEmail">Email</label>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-5" autocomplete="email" required autofocus>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mb-3" autocomplete="email" required autofocus>
                 <label for="inputPassword">Mot de passe</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <img class="border bg-light rounded-circle me-3" src="{{ asset('build/images/babyiconfree.png') }}" width="60px"
               height="60px" alt="logo-baby-shop">
-          <a href="" class="text-light text-uppercase d-none d-lg-block me-5 fw-bold">Jolie piquese</a>
+          <a href="" class="text-light text-uppercase d-none d-lg-block me-5 fw-bold">Jolie piqueuse</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -46,31 +46,46 @@
         </li>
       </ul>
       <div class="panier d-flex justify-content-lg-end justify-content-center">
-      
+   {% if not app.user %}   
         <a class="nav-link active text-light" href="{{ path('cart_index') }}"><img src="{{ asset('build/images/panier.png') }}"
                           class="text-light" alt="panier" width="30">Mon panier</a>
                   
-   {% if not app.user %}     
         <a class="nav-link active text-light" href="{{ path('app_login') }}"><img src="{{ asset('build/images/user.png') }}"
                           class="text-light " alt="user" width="30">Mon compte</a>
-  {% else %}
-				<div class="dropdown btn btn-secondary fs-5">
+  {% endif %}
+  {% if app.user %}
+        <div class="dropdown btn btn-secondary fs-5">
           <a class="nav-link dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
              Bienvenue <span class="text-pink">{{ app.user.firstname }}</span>
           </a>
-          <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">
+          <ul class="dropdown-menu shadow-lg w-100" aria-labelledby="dropdownMenuLink">    
+  {% if is_granted("ROLE_ADMIN") %}
+				   <li>
+							<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('product_list') }}">
+							<i class="bi bi-person-lines-fill text-light"></i> &nbsp; Gérer les produits</a>
+						</li>
             <li>
-							<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('product_new') }}">
-							<i class="bi bi-person-lines-fill text-light"></i> &nbsp; Créer des produits</a>
+							<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('admin_category_index') }}">
+							<i class="bi bi-person-lines-fill text-light"></i> &nbsp; Gérer les catégories</a>
 						</li>                                         
 						<li>	
 								<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('app_logout') }}">
                 <i class="bi bi-power text-light"></i>&nbsp; Déconnexion
                 </a>
-            </li>                  
+            </li> 
+  {% else %}
+						<li>
+							<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('cart_index') }}">
+							<i class="bi bi-person-lines-fill text-light"></i> &nbsp; Voir mon panier</a>
+						</li>                                         
+						<li>	
+							<a class="dropdown-item text-wrap bg-secondary text-light fw-bold" href="{{ path('app_logout') }}">
+              <i class="bi bi-power text-light"></i>&nbsp; Déconnexion
+              </a> 
+            </li> 
+   {% endif %}     
           </ul>
         </div>
   {% endif %}   
-    
   </div>
 </nav>

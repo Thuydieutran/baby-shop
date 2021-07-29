@@ -4,35 +4,35 @@
 
 {% block body %}
 
-<div class="container my-5">
+<div class="container-fluid my-5">
 	<h2 class="text-center mt-5 mb-3 fs-1 text-secondary">Tous les produits</h2>
 	<div class="row d-flex justify-content-center" style="margin:5px">
 		<div class="col-md-10 border rounded border-secondary shadow mb-5 mx-3 p-md-4 p-0 bg-primary">
-            <table class="table ">
-                <thead scope="col">
+            <table class="table table-borderless">
+                <thead scope="col" class="border-top-0 border-end-0 border-start-0 border-secondary border-2">
                     <tr>
-                        <th class="d-none d-md-block text-secondary fs-3">Produit</th>
+                       
+                        <th class="text-secondary">Produit</th>
                         <th class="text-center text-secondary">Photo</th>
                         <th class="text-center text-secondary">Category</th>
-                        <th class="text-center text-secondary">Taille</th>
                         <th class="text-center text-secondary">Prix</th>
                         <th class="text-center text-secondary">Description</th>
-                        <th class="text-center text-secondary">Date</th>
+                        <th class="text-center text-secondary d-none d-md-block text-secondary">Date</th>
                         <th class="text-center text-secondary">Actions</th>
                     </tr>
                 </thead>
                 <tbody scope="row">
                     {% for product in products %}
                         <tr class="text-secondary fs-4">
-                            <td class="d-none d-md-block">{{ product.title }}</td>
+                            <td class="">{{ product.title }}</td>
                             <td class="text-center"><img src="{{ product.photo }}" width="50px"></td>
-                            <td class="text-center">{{ product.category }} €</td>
-                            <td class="text-center">{{ product.prix }}</td>
+                            <td class="text-center">{{ product.category.name }}</td>
+                            <td class="text-center">{{ product.prix }}  €</td>
                             <td class="text-center">{{ product.description }}</td>
-                             <td class="text-center">{{ product.description }}</td>
+                             <td class="text-center d-none d-md-block text-secondary">{{ product.createdAt|date('d/m/Y') }}</td>
                             <td class="text-center"> 
-                                 <a href="{{ path('product_show', {'id': product.id}) }}">  Afficher</a>
-                                <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+                                 <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-secondary text-light mb-2 mb-md-0">  Afficher</a>
+                                <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-secondary text-light">Modifier</a>
                             </td>
                         </tr>
                     {% else %}
@@ -45,5 +45,7 @@
             </table>
         </div>  
     </div>
+     <a href="{{ path('product_new') }}" class="btn btn-secondary text-light col-4 offset-4 fs-5">Ajouter un nouveau produit </a>
+
 </div>
 {% endblock %}

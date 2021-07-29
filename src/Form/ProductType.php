@@ -23,7 +23,7 @@ class ProductType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'Robe princess rose en dentelle',
+                    'placeholder' => 'Nom de produit',
                 ]
             ])
             ->add('category', EntityType::class, [

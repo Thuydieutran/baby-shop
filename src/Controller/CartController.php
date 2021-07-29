@@ -45,27 +45,32 @@ class CartController extends AbstractController
             $total += $totalItem;
         }
 
-        $contact = new OrderContact();
-        $contactForm = $this->createForm(OrderContactType::class, $contact);
-        $contactForm->handleRequest($request);
-
-        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            $contactForm = $contactForm->getData();
+        $form = new OrderContact();
+        $form = $this->createForm(OrderContactType::class);
+        $contact = $form->handleRequest($request);
+      
+        if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
-            ->from(new Address($contactForm->getEmail()))
+            ->from($contact->get('email')->getData())
             ->to(self::MAILER_TO)
             ->subject(self::MAILER_SUBJECT)
-            ->html($this->renderView('contact/newOrder.html.twig', ['contact' => $contact]));
-            $mailer->send($email);
+            ->html($this->render('contact/newOrder.html.twig', [
+                'items' => $dataPanier,
+                'mail' => $contact->get('email')->getData(),
+                'message' => $contact->get('message')->getData(),
+            ]));          
+
+       /*     $mailer->send($email); */
+
             $this->addFlash('message', 'Votre commande a été bien validé,
                 nous vous contacterons ultérieurement !');
-            return $this->redirectToRoute('index');     
+            return $this->redirectToRoute('cart_index');     
         }
         
         return $this->render('cart/index.html.twig', [
             'items' =>  $dataPanier,
             'total' => $total,
-            'contact' => $contactForm->createView()
+            'form' => $form->createView()
         ]);
     }
 

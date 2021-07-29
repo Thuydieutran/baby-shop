@@ -39,6 +39,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/list", name="product_list", methods={"GET"})
+     * @isGranted("ROLE_ADMIN")
      */
     public function list(ProductRepository $productRepo): Response
     {
@@ -50,6 +51,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @isGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -63,7 +65,7 @@ class ProductController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Le produit a bien été créé');
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('product/new.html.twig', [
@@ -84,6 +86,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
+     * @isGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Product $product): Response
     {
@@ -93,7 +96,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('product/edit.html.twig', [
@@ -104,6 +107,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_delete", methods={"POST"})
+     * @isGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Product $product): Response
     {
@@ -113,6 +117,6 @@ class ProductController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('product_index');
+        return $this->redirectToRoute('product_list');
     }
 }
